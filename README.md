@@ -39,7 +39,7 @@ Markoff Chaney — 1723 views
 Anonymous Contributor — 1023 views
 ```
 
-### 3. On which days did more than 1% of requests lead to errors? The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser. (Refer back to this lesson if you want to review the idea of HTTP status codes.)
+### 3. On which days did more than 1% of requests lead to errors? The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
 
 #### Example:
 
@@ -115,7 +115,7 @@ python3 reporting_tool.py
 	order by views desc
 	limit 30;
 
-### The results of this query shows that the root (/) path is the most accessed followed by the top 3 articles.  I used this to create the v_log_top3 query.
+### The results of this query shows that the root (/) path is the most accessed followed by the top 3 articles.  We'll used this to create the v_log_top3 query.
 
 ### In the articles table, the slug column contains the text we need to match in the log path. For example, a slug may look like this:
 
@@ -128,12 +128,12 @@ bears-like-berries
 /article/bears-like-berries
 ```
 
-### Therefore we need our query to only return values that contain the exact text of the slug.  There are some paths that have additional text, perhaps a single letter, tacked on to the end of the path like so:
+### So we need our query to only return values that contain the exact text of the slug.  There are some paths that have additional text, perhaps a single letter, tacked on to the end of the path like so:
 
 ```
 /article/bears-like-berriesp
 ```
-### We don't want to match those since they are not the right path the the relevant article.  Notice that our where clause makes sure that we get the slug text but not any wildcard values after the slug text.  This keeps us from counting the paths that would lead to an error.  The put the query we need in the view v_log_top3 provide the number of views each tiltle has received.  We will query our v_log_top3 table in our code with the following query:
+### We don't want to match those since they are not the right path the the relevant article.  Notice that our where clause makes sure that we get the slug text but not any wildcard values after the slug text.  This keeps us from counting the paths that would lead to an error.  If we put the query we need in the view v_log_top3, this will provide the number of views each tiltle has received.  We will then query our v_log_top3 table in our code:
 
 
 	select title, views
@@ -174,7 +174,12 @@ bears-like-berries
 
 ### Now that we have the number of errors and the total number of accesses per day we can do the math needed to determine the percentage.  Multiplying the ratio of errorstatus/allstatus by 100.0 helps us in two ways.  It gives us a double precison number and also gives us a percentage that is easier to read.  Rounding the result to one decimal place fits our output requirement.  We create the v_error_percent_per_day view for this purpose.
 
-### The last thing we need to do is get the data for the report.  Instead of putting this query inside the reporting tool, I've created the v_high_error_dates view just for the fun of having the data available through a simple select query on the view in the code.  Also, we must now convert our date to a more friendly string value.  We use to_char(time, 'Month DD, YYYY') to do this.
+### The last thing we need to do is get the data for the report.  Instead of putting a more complex query inside the reporting tool, I've created the v_high_error_dates view just for the fun of having the data available through a simple select query on the view in the code.  Also, we must now convert our date to a more friendly string value.  We use to_char(time, 'Month DD, YYYY') to do this.  Here is the final query in the code:
+
+
+	select * from v_high_error_dates
+
+### We have to format our data from the query just a little bit.  The to_char() function pads the Month out to 9 places.  So, if our query might have a lot of extra whitespace after the month.  We can use Python's string split() function to get each part of the string that has printable text and use the join() function to rejoin the text with spaces in the appropriate places.
 
 #
 
