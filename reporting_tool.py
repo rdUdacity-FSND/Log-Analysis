@@ -55,8 +55,10 @@ def print_most_popular_authors():
     print("\n\n")
 
 def print_request_errors_1percent():
-    """return the date formated like (July 28, 2016)
-       where moer than 1% of requests lead to errors"""
+    """return the Mongth DD, YYYY (July 28, 2016)
+       and percentage of errors where the errors
+       where the errors are greater than 1% of 
+	   requests lead to errors"""
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     c.execute("select * from v_high_error_dates")
