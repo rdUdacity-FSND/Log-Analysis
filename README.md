@@ -137,8 +137,8 @@ bears-like-berries
 
 
 	select title, views
-    from articles, v_log_top3
-    where v_log_top3.path like ('/article/' || articles.slug)
+	from articles, v_log_top3
+	where v_log_top3.path like ('/article/' || articles.slug)
 	order by views desc
 
 
@@ -177,3 +177,4 @@ bears-like-berries
 ### The last thing we need to do is get the data for the report.  Instead of putting this query inside the reporting tool, I've created the v_high_error_dates view just for the fun of having the data available through a simple select query on the view in the code.  Also, we must now convert our date to a more friendly string value.  We use to_char(time, 'Month DD, YYYY') to do this.
 
 #
+
