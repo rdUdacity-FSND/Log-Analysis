@@ -58,17 +58,17 @@ July 29, 2016 — 2.5% errors
 	order by views desc
 	limit 3 offset 1;
 
-	create view v_authors_slugs
+	create view v_authors_slugs as
 	select slug, name
 	from articles, authors
 	where articles.author = authors.id;
 
-	create view v_log_pathviews
-	select path, count(path)
+	create view v_log_pathviews as
+	select path, count(path) as views
 	from log
 	group by path;
 
-	create view v_author_slug_views
+	create view v_author_slug_views as
 	select name, slug, views 
 	from v_authors_slugs, v_log_pathviews
 	where v_log_pathviews.path like ‘/article/‘ || v_authors_slugs.slug;

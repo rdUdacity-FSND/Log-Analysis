@@ -1,2 +1,4 @@
+*.DS_Store
 *.swp
 newsdata.sql
+View_Fix_Readme.txt
