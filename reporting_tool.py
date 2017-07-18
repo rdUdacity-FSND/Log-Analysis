@@ -13,13 +13,6 @@ def print_most_popular_3_articles():
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
 
-    # Note: v_log_top3 is a view
-    #   create view v_log_top3 as
-    #   select path, count(path) as views
-    #   from log
-    #   group by path
-    #   order by views desc
-    #   limit 3 offset 1;
     c.execute("select title, views \
                from articles, v_log_top3 \
                where v_log_top3.path like \
