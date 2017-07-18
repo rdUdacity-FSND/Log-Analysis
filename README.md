@@ -46,7 +46,9 @@ Anonymous Contributor — 1023 views
 ```
 July 29, 2016 — 2.5% errors
 ```
-## Running the Reporting Tool
+# Solution:
+
+## Create supporting Views
 
 ### Prior to runnning the tool, you will need to create some views in the database.  These views support the queries that are used by the Python code.  The thought process behind these views is described in the solution section.
 
@@ -99,7 +101,7 @@ July 29, 2016 — 2.5% errors
 	order by v1.percent desc;
 
 
-#### After creating the views you can run the report
+### After creating the views you can run the report
 ```
 python3 reporting_tool.py
 ```
