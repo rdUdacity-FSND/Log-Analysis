@@ -50,7 +50,7 @@ July 29, 2016 — 2.5% errors
 
 ## Create supporting Views
 
-### Prior to runnning the tool, you will need to create some views in the database.  These views support the queries that are used by the Python code.  The thought process behind these views is described in the solution section.
+### Prior to runnning the tool, you will need to create some views in the database.  These views support the queries that are used by the Python code.  You can load them how you prefer, I entered them manually in the database.
 
 
 	create view v_log_top3 as
