@@ -182,4 +182,5 @@ bears-like-berries
 ### We have to format our data from the query just a little bit.  The to_char() function pads the Month out to 9 places.  So, if our query might have a lot of extra whitespace after the month.  We can use Python's string split() function to get each part of the string that has printable text and use the join() function to rejoin the text with spaces in the appropriate places.
 
 #
+Ron Duran - Udacity FSND - Log Analysis Project
 
